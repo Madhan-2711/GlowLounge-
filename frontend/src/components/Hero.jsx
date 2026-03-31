@@ -21,14 +21,7 @@ const Hero = () => {
             Welcome to Saguni Gaming. Unleash your potential in our premium esports arenas, book high-end setups, and compete in epic tournaments.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#ff003c] text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(255,0,60,0.5)] hover:shadow-[0_0_35px_rgba(255,0,60,0.8)] hover:scale-105 border border-[#ff003c]/50">
-              Book A Setup <ChevronRight className="w-5 h-5" />
-            </button>
-            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest transition-all duration-300 border border-white/20 hover:border-white hover:bg-white/5">
-              View Tournaments
-            </button>
-          </div>
+
         </div>
       </div>
     </div>
