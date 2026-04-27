@@ -8,10 +8,7 @@ const app = express();
 console.log('Glow Lounge AI Operational Core: BOOT SEQUENCE INITIATED.');
 
 // MIDDLWARE PROTOCOLS
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://glow-lounge-app.vercel.app'],
-  methods: ['GET', 'POST'],
-}));
+app.use(cors());
 app.use(express.json());
 
 // API ROUTING CHANNELS
