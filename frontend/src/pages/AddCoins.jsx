@@ -226,7 +226,7 @@ const AddCoins = ({ session, profile, setProfile }) => {
               💳 <span className="text-white">Card:</span> <span className="text-white font-mono">5267 3181 8797 5449</span> &nbsp;|&nbsp; Expiry: <span className="text-white font-mono">12/26</span> &nbsp;|&nbsp; CVV: <span className="text-white font-mono">123</span> &nbsp;|&nbsp; OTP: <span className="text-white font-mono">1234</span>
             </p>
             <p className="text-gray-400 text-xs">
-              📱 <span className="text-white">UPI (easiest):</span> Enter <span className="text-white font-mono">success@razorpay</span> as UPI ID
+              🏦 <span className="text-white">Netbanking:</span> Select any bank → use test credentials shown on the bank page
             </p>
           </div>
         </div>
