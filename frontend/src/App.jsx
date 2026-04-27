@@ -82,13 +82,30 @@ function App() {
   }, []);
 
   async function fetchProfile(userId) {
+    const { data: { user } } = await supabase.auth.getUser();
     const { data, error } = await supabase
-       .from('user_profiles')
-       .select('*')
-       .eq('id', userId)
-       .maybeSingle(); // Use maybeSingle to prevent absolute crash if trigger lagged
+      .from('user_profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+
     if (data) {
-       setProfile(data);
+      setProfile(data);
+    } else if (!error && user) {
+      // Profile row is missing — auto-create it so login doesn't silently stall
+      const { data: newProfile } = await supabase
+        .from('user_profiles')
+        .insert([{
+          id: userId,
+          email: user.email,
+          role: 'customer',
+          wallet_balance: 0,
+          full_name: user.user_metadata?.full_name || '',
+          mobile_number: user.user_metadata?.mobile_number || '',
+        }])
+        .select()
+        .single();
+      if (newProfile) setProfile(newProfile);
     }
   }
 
