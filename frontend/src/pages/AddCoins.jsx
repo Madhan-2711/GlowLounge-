@@ -83,7 +83,13 @@ const AddCoins = ({ session, profile, setProfile }) => {
         }),
       });
 
-      const orderData = await orderRes.json();
+      // Safe JSON parse — handles empty or HTML error responses from backend
+      let orderData;
+      try {
+        orderData = await orderRes.json();
+      } catch {
+        throw new Error('Backend is offline or not responding. Check Railway deployment and environment variables.');
+      }
       if (!orderRes.ok) {
         throw new Error(orderData.error || 'Failed to create payment order');
       }
