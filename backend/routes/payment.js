@@ -8,9 +8,9 @@ const router = express.Router();
 
 // Coin packages available
 const COIN_PACKAGES = {
-  starter: { inr: 50,  coins: 100 },
-  pro:     { inr: 100, coins: 250 },
-  elite:   { inr: 200, coins: 600 },
+  starter: { inr: 100, coins: 100 },
+  pro:     { inr: 200, coins: 250 },
+  elite:   { inr: 400, coins: 600 },
 };
 
 // POST /api/payment/create-order

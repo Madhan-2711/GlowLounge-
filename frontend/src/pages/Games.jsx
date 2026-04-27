@@ -9,7 +9,7 @@ const stations = [
     name: 'High-End Gaming PCs',
     tag: 'PC Rig',
     description: 'Top-of-the-line custom-built gaming rigs with the latest CPUs, RTX GPUs, high-refresh rate monitors and mechanical keyboards.',
-    specs: ['Intel Core i9 / AMD Ryzen 9', 'NVIDIA RTX 4080 / 4090', '240Hz 1ms QHD Display', '32GB DDR5 RAM', '2TB NVMe SSD'],
+    specs: ['Intel Core i9 / AMD Ryzen 9', 'NVIDIA RTX 5060 / 5060 Ti', '240Hz 1ms QHD Display', '32GB DDR5 RAM', '2TB NVMe SSD'],
     color: 'text-[#ff003c]',
     glow: 'shadow-[0_0_20px_rgba(255,0,60,0.15)]',
     border: 'border-[#ff003c]/30',

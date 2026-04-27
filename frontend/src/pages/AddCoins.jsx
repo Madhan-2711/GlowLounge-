@@ -10,16 +10,16 @@ const PACKAGES = [
   {
     id: 'starter',
     label: 'Starter',
-    inr: 50,
+    inr: 100,
     coins: 100,
-    description: 'Perfect for a quick session',
+    description: '1 coin = ₹1',
     color: 'border-gray-500/40 hover:border-gray-300/60',
     badge: null,
   },
   {
     id: 'pro',
     label: 'Pro',
-    inr: 100,
+    inr: 200,
     coins: 250,
     description: '25% bonus coins',
     color: 'border-[#ff003c]/50 hover:border-[#ff003c]',
@@ -29,7 +29,7 @@ const PACKAGES = [
   {
     id: 'elite',
     label: 'Elite',
-    inr: 200,
+    inr: 400,
     coins: 600,
     description: '50% bonus coins',
     color: 'border-yellow-500/50 hover:border-yellow-400',

@@ -5,7 +5,7 @@ import { Zap } from 'lucide-react';
 // #12 FIX: Removed unused ChevronRight import
 // #7 FIX: Fixed description text (removed stale "tournaments" reference), added CTA button
 
-const Hero = () => {
+const Hero = ({ session }) => {
   return (
     <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center" id="home">
       {/* Background with glowing orb effects */}
@@ -49,12 +49,14 @@ const Hero = () => {
             >
               Book a Station
             </Link>
-            <Link
-              to="/login"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest transition-all duration-300 border border-white/20 hover:border-white hover:bg-white/5 font-orbitron"
-            >
-              Sign In
-            </Link>
+            {!session && (
+              <Link
+                to="/login"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-transparent text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest transition-all duration-300 border border-white/20 hover:border-white hover:bg-white/5 font-orbitron"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </div>

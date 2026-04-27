@@ -55,7 +55,7 @@ function App() {
         }
       )
       .subscribe();
-      
+
     // 3. Realtime Listener for User Profile (Wallet Balance Updates)
     const profileChannel = supabase
       .channel('user_profiles_channel')
@@ -63,13 +63,13 @@ function App() {
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'user_profiles' },
         (payload) => {
-           // If the currently logged in user's profile gets updated (like coin deductions or additions)
-           setProfile((currentProfile) => {
-              if (currentProfile && currentProfile.id === payload.new.id) {
-                 return payload.new;
-              }
-              return currentProfile;
-           });
+          // If the currently logged in user's profile gets updated (like coin deductions or additions)
+          setProfile((currentProfile) => {
+            if (currentProfile && currentProfile.id === payload.new.id) {
+              return payload.new;
+            }
+            return currentProfile;
+          });
         }
       )
       .subscribe();
@@ -82,30 +82,13 @@ function App() {
   }, []);
 
   async function fetchProfile(userId) {
-    const { data: { user } } = await supabase.auth.getUser();
     const { data, error } = await supabase
       .from('user_profiles')
       .select('*')
       .eq('id', userId)
-      .maybeSingle();
-
+      .maybeSingle(); // Use maybeSingle to prevent absolute crash if trigger lagged
     if (data) {
       setProfile(data);
-    } else if (!error && user) {
-      // Profile row is missing — auto-create it so login doesn't silently stall
-      const { data: newProfile } = await supabase
-        .from('user_profiles')
-        .insert([{
-          id: userId,
-          email: user.email,
-          role: 'customer',
-          wallet_balance: 0,
-          full_name: user.user_metadata?.full_name || '',
-          mobile_number: user.user_metadata?.mobile_number || '',
-        }])
-        .select()
-        .single();
-      if (newProfile) setProfile(newProfile);
     }
   }
 
@@ -129,13 +112,13 @@ function App() {
       <div className="bg-[#0f0f11] min-h-screen text-white font-inter selection:bg-[#ff003c]/30 selection:text-white">
         <Navbar profile={profile} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home session={session} />} />
           <Route path="/games" element={<Games />} />
           <Route path="/availability" element={<Availability slots={slots} loading={loading} session={session} profile={profile} setProfile={setProfile} />} />
           <Route path="/login" element={<Login session={session} profile={profile} />} />
           <Route path="/register" element={<Register session={session} profile={profile} />} />
           <Route path="/admin-login" element={<AdminLogin session={session} profile={profile} />} />
-          
+
           <Route path="/my-bookings" element={<MyBookings session={session} profile={profile} />} />
           <Route path="/add-coins" element={<AddCoins session={session} profile={profile} setProfile={setProfile} />} />
 
