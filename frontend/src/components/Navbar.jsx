@@ -41,14 +41,15 @@ const Navbar = ({ profile }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
-          {/* ── LOGO ── Art Deco: Cinzel Decorative brand name */}
+          {/* ── LOGO ── Saguni Gaming image logo */}
           <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-            {/* Diamond icon frame */}
-            <div className="w-9 h-9 border border-[#ff003c]/60 rotate-45 flex items-center justify-center group-hover:border-[#ff003c] group-hover:shadow-[0_0_12px_rgba(255,0,60,0.5)] transition-all duration-300">
-              <Gamepad2 className="w-4 h-4 text-[#ff003c] -rotate-45" />
-            </div>
-            <span className="font-cinzel-deco font-bold text-xl tracking-widest uppercase text-white">
-              Glow <span className="text-[#ff003c]">Lounge</span>
+            <img
+              src="/saguni-logo.png"
+              alt="Saguni Gaming"
+              className="h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(255,0,60,0.5)] group-hover:drop-shadow-[0_0_14px_rgba(255,0,60,0.8)] transition-all duration-300"
+            />
+            <span className="font-cinzel-deco font-bold text-lg tracking-widest uppercase text-white hidden sm:block">
+              Saguni <span className="text-[#ff003c]">Gaming</span>
             </span>
           </Link>
 

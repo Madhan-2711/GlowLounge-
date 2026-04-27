@@ -18,7 +18,7 @@ const Hero = ({ session }) => {
         {/* ── Art Deco pre-heading tag ── */}
         <div className="flex items-center justify-center gap-3 mb-8">
           <div className="h-[1px] w-16 bg-[#ff003c]/60" />
-          <span className="font-josefin text-[11px] uppercase tracking-[0.4em] text-[#ff003c]">Premium Gaming Lounge</span>
+          <span className="font-josefin text-[11px] uppercase tracking-[0.4em] text-[#ff003c]">Saguni Gaming Lounge</span>
           <div className="h-[1px] w-16 bg-[#ff003c]/60" />
         </div>
 
