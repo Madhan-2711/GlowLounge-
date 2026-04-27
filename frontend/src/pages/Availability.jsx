@@ -82,7 +82,8 @@ const Availability = ({ slots, loading, profile, setProfile }) => {
       }]);
 
     if (bookingError) {
-      console.error('Ledger Warning - could not print receipt:', bookingError);
+      console.error('Booking insert error:', bookingError);
+      toast.warning(`Session logged but receipt failed: ${bookingError.message}`, 'Receipt Warning');
     }
 
     // 3. Hardware Lock (Change state to OCCUPIED)
