@@ -221,9 +221,12 @@ const AddCoins = ({ session, profile, setProfile }) => {
         <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-8 flex items-start gap-3">
           <Zap className="w-4 h-4 text-yellow-400 shrink-0 mt-0.5" />
           <div>
-            <p className="text-yellow-400 font-bold text-xs uppercase tracking-widest mb-1">Test Mode Active</p>
-            <p className="text-gray-400 text-xs leading-relaxed">
-              Use test card <span className="text-white font-mono">4111 1111 1111 1111</span>, any future expiry, and any CVV. No real money will be charged.
+            <p className="text-yellow-400 font-bold text-xs uppercase tracking-widest mb-2">Test Mode Active — No Real Money Charged</p>
+            <p className="text-gray-400 text-xs leading-relaxed mb-1">
+              💳 <span className="text-white">Card:</span> <span className="text-white font-mono">5267 3181 8797 5449</span> &nbsp;|&nbsp; Expiry: <span className="text-white font-mono">12/26</span> &nbsp;|&nbsp; CVV: <span className="text-white font-mono">123</span> &nbsp;|&nbsp; OTP: <span className="text-white font-mono">1234</span>
+            </p>
+            <p className="text-gray-400 text-xs">
+              📱 <span className="text-white">UPI (easiest):</span> Enter <span className="text-white font-mono">success@razorpay</span> as UPI ID
             </p>
           </div>
         </div>
