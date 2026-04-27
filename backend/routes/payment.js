@@ -38,7 +38,7 @@ router.post('/create-order', async (req, res) => {
     const order = await razorpay.orders.create({
       amount: pkg.inr * 100,
       currency: 'INR',
-      receipt: `glow_${customerId}_${Date.now()}`,
+      receipt: `gw_${customerId.slice(-6)}_${Date.now().toString().slice(-8)}`,
     });
 
     // Log pending transaction in Supabase
