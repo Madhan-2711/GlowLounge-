@@ -6,17 +6,16 @@ const { createClient } = require('@supabase/supabase-js');
 
 const router = express.Router();
 
-// Initialize Razorpay with test keys
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
-
 // Initialize Supabase admin client
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_KEY
 );
+
+// Warn clearly if keys are missing (won't crash server)
+if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+  console.warn('⚠️  WARNING: RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET is not set. Payment routes will fail.');
+}
 
 // Coin packages available
 const COIN_PACKAGES = {
@@ -37,6 +36,10 @@ router.post('/create-order', async (req, res) => {
     }
 
     // Create order with Razorpay (amount is in paise = INR * 100)
+    const razorpay = new Razorpay({
+      key_id: process.env.RAZORPAY_KEY_ID,
+      key_secret: process.env.RAZORPAY_KEY_SECRET,
+    });
     const order = await razorpay.orders.create({
       amount: pkg.inr * 100,
       currency: 'INR',
