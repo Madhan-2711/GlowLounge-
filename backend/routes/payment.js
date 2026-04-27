@@ -6,17 +6,6 @@ const { createClient } = require('@supabase/supabase-js');
 
 const router = express.Router();
 
-// Initialize Supabase admin client
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
-
-// Warn clearly if keys are missing (won't crash server)
-if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
-  console.warn('⚠️  WARNING: RAZORPAY_KEY_ID or RAZORPAY_KEY_SECRET is not set. Payment routes will fail.');
-}
-
 // Coin packages available
 const COIN_PACKAGES = {
   starter: { inr: 50,  coins: 100 },
@@ -35,11 +24,17 @@ router.post('/create-order', async (req, res) => {
       return res.status(400).json({ error: 'Invalid coin package selected.' });
     }
 
-    // Create order with Razorpay (amount is in paise = INR * 100)
+    // Lazy-init Razorpay and Supabase inside handler so missing env vars don't crash server
     const razorpay = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_KEY
+    );
+
+    // Create order with Razorpay (amount is in paise = INR * 100)
     const order = await razorpay.orders.create({
       amount: pkg.inr * 100,
       currency: 'INR',
@@ -80,6 +75,10 @@ router.post('/create-order', async (req, res) => {
 router.post('/verify', async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, customerId } = req.body;
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_KEY
+    );
 
     // SECURITY: Verify signature using HMAC SHA256
     const expectedSignature = crypto

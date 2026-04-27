@@ -24,4 +24,13 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Core Neural Net securely listening on port ${PORT}...`);
+  console.log(`ENV CHECK: RAZORPAY_KEY_ID=${process.env.RAZORPAY_KEY_ID ? 'SET' : 'MISSING'}, SUPABASE_URL=${process.env.SUPABASE_URL ? 'SET' : 'MISSING'}`);
+});
+
+// Global crash handlers so errors are logged before process dies
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err.message, err.stack);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('UNHANDLED REJECTION:', reason);
 });
