@@ -36,7 +36,7 @@ const Navbar = ({ profile }) => {
           <Link to="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
             <Gamepad2 className="text-[#ff003c] w-8 h-8 drop-shadow-[0_0_10px_rgba(255,0,60,0.8)] group-hover:scale-110 transition-transform" />
             <span className="font-orbitron font-bold text-2xl tracking-wider uppercase text-white">
-              Saguni <span className="text-[#ff003c]">Gaming</span>
+              Glow <span className="text-[#ff003c]">Lounge</span>
             </span>
           </Link>
 
@@ -63,10 +63,24 @@ const Navbar = ({ profile }) => {
                         Operator Panel
                       </Link>
                    ) : (
-                      <div className="flex items-center gap-3 bg-[#090909] px-4 py-2 border border-[#ff003c]/30 rounded shadow-[inset_0_0_10px_rgba(255,0,60,0.1)]">
-                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        <span className="font-orbitron font-bold text-[#ff003c] tracking-widest text-xs uppercase">🪙 {profile.wallet_balance} Coins</span>
-                      </div>
+                      <>
+                        <div className="flex items-center gap-3 bg-[#090909] px-4 py-2 border border-[#ff003c]/30 rounded shadow-[inset_0_0_10px_rgba(255,0,60,0.1)]">
+                          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                          <span className="font-orbitron font-bold text-[#ff003c] tracking-widest text-xs uppercase">🪙 {profile.wallet_balance} Coins</span>
+                        </div>
+                        <Link
+                          to="/my-bookings"
+                          className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 uppercase font-bold text-[10px] tracking-widest"
+                        >
+                          My Sessions
+                        </Link>
+                        <Link
+                          to="/add-coins"
+                          className="text-green-400 hover:text-green-300 transition-colors flex items-center gap-1 uppercase font-bold text-[10px] tracking-widest border border-green-500/30 px-2 py-1 rounded"
+                        >
+                          + Add Coins
+                        </Link>
+                      </>
                    )}
                    <button 
                      onClick={handleLogout}
@@ -118,10 +132,26 @@ const Navbar = ({ profile }) => {
                         Operator Panel
                       </Link>
                    ) : (
-                      <div className="mx-3 mt-2 mb-2 bg-[#090909] p-4 text-center border border-[#ff003c]/30 rounded">
-                        <span className="font-orbitron font-bold text-[#ff003c] tracking-widest uppercase block mb-1 text-xs">Secure Wallet</span>
-                        <span className="font-black text-xl text-white">🪙 {profile.wallet_balance} Coins</span>
-                      </div>
+                      <>
+                        <div className="mx-3 mt-2 mb-2 bg-[#090909] p-4 text-center border border-[#ff003c]/30 rounded">
+                          <span className="font-orbitron font-bold text-[#ff003c] tracking-widest uppercase block mb-1 text-xs">Secure Wallet</span>
+                          <span className="font-black text-xl text-white">🪙 {profile.wallet_balance} Coins</span>
+                        </div>
+                        <Link
+                          to="/my-bookings"
+                          onClick={() => setIsOpen(false)}
+                          className="block px-3 py-3 text-lg font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors uppercase tracking-wide"
+                        >
+                          My Sessions
+                        </Link>
+                        <Link
+                          to="/add-coins"
+                          onClick={() => setIsOpen(false)}
+                          className="block px-3 py-3 text-lg font-medium text-green-400 hover:text-green-300 hover:bg-white/5 rounded-md transition-colors uppercase tracking-wide"
+                        >
+                          + Add Coins
+                        </Link>
+                      </>
                    )}
                    <button 
                      onClick={handleLogout} 

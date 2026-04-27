@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import MyBookings from './pages/MyBookings';
+import AddCoins from './pages/AddCoins';
 
 function App() {
   const [slots, setSlots] = useState([]);
@@ -117,6 +119,9 @@ function App() {
           <Route path="/register" element={<Register session={session} profile={profile} />} />
           <Route path="/admin-login" element={<AdminLogin session={session} profile={profile} />} />
           
+          <Route path="/my-bookings" element={<MyBookings session={session} profile={profile} />} />
+          <Route path="/add-coins" element={<AddCoins session={session} profile={profile} setProfile={setProfile} />} />
+
           {/* Legacy and Root Fallbacks */}
           <Route path="/auth" element={<Navigate to="/login" replace />} />
           <Route path="/admin" element={<Navigate to="/admin-login" replace />} />
