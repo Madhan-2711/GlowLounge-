@@ -1,126 +1,149 @@
 import React from 'react';
-import { Monitor, Gamepad2, Cpu, Zap, Star } from 'lucide-react';
-
-// #8 FIX: Built out the previously empty Games.jsx page
+import { Monitor, Gamepad2, Cpu, Zap, ChevronRight } from 'lucide-react';
 
 const stations = [
   {
     icon: Monitor,
     name: 'High-End Gaming PCs',
     tag: 'PC Rig',
+    numeral: 'I',
     description: 'Top-of-the-line custom-built gaming rigs with the latest CPUs, RTX GPUs, high-refresh rate monitors and mechanical keyboards.',
     specs: ['Intel Core i9 / AMD Ryzen 9', 'NVIDIA RTX 5060 / 5060 Ti', '240Hz 1ms QHD Display', '32GB DDR5 RAM', '2TB NVMe SSD'],
-    color: 'text-[#ff003c]',
-    glow: 'shadow-[0_0_20px_rgba(255,0,60,0.15)]',
-    border: 'border-[#ff003c]/30',
-    accentBg: 'bg-[#ff003c]/10',
+    accentColor: '#ff003c',
   },
   {
     icon: Gamepad2,
     name: 'PlayStation 5',
     tag: 'Console',
-    description: 'Sony\'s flagship next-gen console with ultra-fast SSD, DualSense haptic feedback controller, and access to an exclusive game library.',
+    numeral: 'II',
+    description: "Sony's flagship next-gen console with ultra-fast SSD, DualSense haptic feedback controller, and access to an exclusive game library.",
     specs: ['AMD Zen 2 CPU (8-core)', 'AMD RDNA 2 GPU', '4K / 120fps Gaming', 'DualSense Haptic Controller', '825GB NVMe SSD'],
-    color: 'text-blue-400',
-    glow: 'shadow-[0_0_20px_rgba(59,130,246,0.15)]',
-    border: 'border-blue-500/30',
-    accentBg: 'bg-blue-500/10',
+    accentColor: '#3b82f6',
   },
   {
     icon: Cpu,
     name: 'Xbox Series X',
     tag: 'Console',
-    description: 'Microsoft\'s most powerful console ever. Experience 4K gaming at 60fps, up to 120fps, and instant load times with Quick Resume.',
+    numeral: 'III',
+    description: "Microsoft's most powerful console ever. Experience 4K gaming at 60fps, up to 120fps, and instant load times with Quick Resume.",
     specs: ['AMD Zen 2 CPU (8-core)', '12 TFLOPS GPU', '4K @ 60fps / 120fps', '1TB NVMe SSD', 'Xbox Game Pass Ready'],
-    color: 'text-green-400',
-    glow: 'shadow-[0_0_20px_rgba(34,197,94,0.15)]',
-    border: 'border-green-500/30',
-    accentBg: 'bg-green-500/10',
+    accentColor: '#22c55e',
   },
   {
     icon: Zap,
     name: 'Nintendo Switch',
     tag: 'Console',
+    numeral: 'IV',
     description: 'Play anywhere, anytime. Dock it for TV mode, take it on the go in handheld mode — perfect for multiplayer party sessions.',
     specs: ['NVIDIA Tegra Processor', 'Portable + TV Mode', '60fps Handheld Display', 'Joy-Con Controllers', 'Multiplayer Ready'],
-    color: 'text-yellow-400',
-    glow: 'shadow-[0_0_20px_rgba(250,204,21,0.15)]',
-    border: 'border-yellow-500/30',
-    accentBg: 'bg-yellow-500/10',
+    accentColor: '#eab308',
   },
 ];
 
 const Games = () => {
   return (
-    <div className="pt-32 pb-20 min-h-screen">
+    <div className="pt-36 pb-24 min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
 
-        {/* Header */}
+        {/* ── Section Header ── */}
         <div className="text-center mb-20">
-          <h1 className="text-4xl font-orbitron font-bold text-white uppercase tracking-widest mb-4">
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div className="h-[1px] w-12 bg-[#ff003c]/50" />
+            <div className="w-1.5 h-1.5 rotate-45 border border-[#ff003c]/70" />
+            <div className="h-[1px] w-12 bg-[#ff003c]/50" />
+          </div>
+          <h1 className="font-cinzel font-black text-4xl sm:text-5xl text-white uppercase tracking-[0.08em] mb-4">
             Our <span className="text-[#ff003c] neon-text-red">Stations</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="font-josefin text-gray-400 text-base max-w-xl mx-auto leading-relaxed tracking-wide">
             Premium hardware. Immersive setups. Every rig is maintained to deliver the highest performance gaming experience.
           </p>
+          <div className="flex items-center justify-center gap-3 mt-5">
+            <div className="h-[1px] w-24 bg-gradient-to-r from-transparent to-[#ff003c]/60" />
+            <div className="w-2 h-2 rotate-45 bg-[#ff003c]" />
+            <div className="h-[1px] w-24 bg-gradient-to-l from-transparent to-[#ff003c]/60" />
+          </div>
         </div>
 
-        {/* Station Cards */}
+        {/* ── Station Cards — Art Deco Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           {stations.map((station) => {
             const Icon = station.icon;
             return (
               <div
                 key={station.name}
-                className={`glass-panel p-8 rounded-lg border ${station.border} ${station.glow} relative overflow-hidden group transition-all duration-300 hover:scale-[1.02]`}
+                className="deco-card p-8 group"
               >
-                {/* Background accent */}
-                <div className={`absolute top-0 right-0 w-40 h-40 ${station.accentBg} rounded-bl-[200px] pointer-events-none transition-all duration-300`}></div>
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-current to-transparent opacity-30" style={{ color: 'inherit' }}></div>
-
-                <div className="relative z-10">
-                  {/* Icon + Tag */}
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`p-3 rounded-lg ${station.accentBg} border ${station.border}`}>
-                      <Icon className={`w-8 h-8 ${station.color}`} />
-                    </div>
-                    <div>
-                      <span className={`text-[10px] font-black uppercase tracking-widest ${station.color} block mb-0.5`}>{station.tag}</span>
-                      <h2 className="text-2xl font-orbitron font-bold text-white">{station.name}</h2>
-                    </div>
+                {/* Top row: Roman numeral tag + icon */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <span className="font-josefin text-[10px] uppercase tracking-[0.4em] text-gray-600 block mb-1">
+                      {station.numeral} — {station.tag}
+                    </span>
+                    <h2 className="font-cinzel font-bold text-xl text-white uppercase tracking-[0.08em]">
+                      {station.name}
+                    </h2>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6">{station.description}</p>
-
-                  {/* Specs */}
-                  <div className="space-y-2">
-                    {station.specs.map((spec) => (
-                      <div key={spec} className="flex items-center gap-2">
-                        <Star className={`w-3 h-3 ${station.color} shrink-0`} />
-                        <span className="text-gray-300 text-sm font-medium">{spec}</span>
-                      </div>
-                    ))}
+                  {/* Diamond icon frame */}
+                  <div
+                    className="w-12 h-12 rotate-45 flex items-center justify-center flex-shrink-0 ml-4 transition-all duration-400"
+                    style={{
+                      border: `1px solid ${station.accentColor}40`,
+                      background: `${station.accentColor}08`,
+                    }}
+                  >
+                    <Icon
+                      className="w-5 h-5 -rotate-45 transition-colors duration-300"
+                      style={{ color: station.accentColor }}
+                    />
                   </div>
                 </div>
+
+                {/* Separator */}
+                <div className="h-[1px] bg-gradient-to-r from-[#ff003c]/20 via-white/5 to-transparent mb-5" />
+
+                {/* Description */}
+                <p className="font-josefin text-gray-500 text-sm leading-relaxed mb-6 group-hover:text-gray-400 transition-colors">
+                  {station.description}
+                </p>
+
+                {/* Specs */}
+                <ul className="space-y-2">
+                  {station.specs.map((spec) => (
+                    <li key={spec} className="flex items-center gap-3">
+                      <ChevronRight className="w-3 h-3 text-[#ff003c] shrink-0" />
+                      <span className="font-josefin text-gray-400 text-sm">{spec}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="glass-panel rounded-lg border border-[#ff003c]/30 p-12 text-center relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[200px] bg-[#ff003c]/10 blur-[80px] rounded-full pointer-events-none"></div>
-          <h2 className="text-3xl font-orbitron font-bold text-white uppercase tracking-widest mb-4 relative z-10">
-            Ready to Play?
-          </h2>
-          <p className="text-gray-400 mb-8 relative z-10">Check real-time availability and lock in your rig instantly.</p>
-          <a
-            href="/availability"
-            className="relative z-10 inline-flex items-center gap-2 bg-[#ff003c] hover:bg-[#d00030] text-white px-10 py-4 rounded-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(255,0,60,0.5)] hover:shadow-[0_0_35px_rgba(255,0,60,0.8)] hover:scale-105 font-orbitron"
-          >
-            View Live Grid
-          </a>
+        {/* ── Bottom CTA ── */}
+        <div className="deco-card p-14 text-center relative overflow-hidden">
+          <div className="absolute inset-0 deco-sunburst pointer-events-none" />
+          <div className="relative z-10">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="h-[1px] w-10 bg-[#ff003c]/50" />
+              <div className="w-1.5 h-1.5 rotate-45 border border-[#ff003c]" />
+              <div className="h-[1px] w-10 bg-[#ff003c]/50" />
+            </div>
+            <h2 className="font-cinzel font-bold text-3xl text-white uppercase tracking-[0.1em] mb-4">
+              Ready to Play?
+            </h2>
+            <p className="font-josefin text-gray-400 mb-10 tracking-wide">
+              Check real-time availability and lock in your rig instantly.
+            </p>
+            <a
+              href="/availability"
+              className="inline-flex items-center gap-3 font-cinzel text-sm uppercase tracking-[0.22em] bg-[#ff003c] text-white px-12 py-4 shadow-[0_0_22px_rgba(255,0,60,0.5)] hover:shadow-[0_0_38px_rgba(255,0,60,0.75)] hover:bg-[#cc002f] transition-all duration-400 border border-[#ff003c]"
+            >
+              View Live Grid
+            </a>
+          </div>
         </div>
 
       </div>
